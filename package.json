@@ -110,7 +110,7 @@
     "mini-css-extract-plugin": "^0.4.4",
     "msw": "^0.25.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "prettier": "^1.14.3",
+    "prettier": "^2.2.1",
     "protractor": "~5.4.3",
     "react-dom": "^17.0.1",
     "sitemap-webpack-plugin": "^0.8.0",
