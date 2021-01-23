@@ -1,7 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ActionType} from '../../shared/model/action-type.enum';
-import {QR} from '../../shared/model/qr';
-import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
+import { ActionType } from '../../shared/model/action-type.enum'
+import { QR } from '../../shared/model/qr'
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-create-step2',
@@ -9,14 +16,11 @@ import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
   styleUrls: ['./create-step2.component.scss'],
 })
 export class CreateStep2Component implements OnInit {
+  public readonly ActionType = ActionType
 
-  public readonly ActionType = ActionType;
+  @Input() type: ActionType
 
-  @Input() type: ActionType;
+  @Output() stepComplete = new EventEmitter<QR>()
 
-  @Output() stepComplete = new EventEmitter<QR>();
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

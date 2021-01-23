@@ -1,4 +1,4 @@
 export enum QrType {
-    SCANNED = 'scanned',
-    CREATED = 'created'
+  SCANNED = 'scanned',
+  CREATED = 'created',
 }

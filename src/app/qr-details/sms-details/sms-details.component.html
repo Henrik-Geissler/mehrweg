@@ -8,7 +8,10 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-text class="details-text" [innerHTML]="phoneNumbersAsLink(sms.numbers)"></ion-text>
+          <ion-text
+            class="details-text"
+            [innerHTML]="phoneNumbersAsLink(sms.numbers)"
+          ></ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -23,7 +26,12 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-text class="details-text"><span class="details-text-with-line-breaks" [innerHTML]="sms.message"></span></ion-text>
+          <ion-text class="details-text"
+            ><span
+              class="details-text-with-line-breaks"
+              [innerHTML]="sms.message"
+            ></span
+          ></ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>

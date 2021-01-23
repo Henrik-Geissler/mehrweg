@@ -2,44 +2,44 @@
 
 # [QR Code Scanner](https://qrcodescan.in)
 
-*QR Code Scanner - a simple, fast and useful progressive web application*
+_QR Code Scanner - a simple, fast and useful progressive web application_
 
 ### [Live](https://qrcodescan.in)
 
 ## Features
 
-  - App Shell
-  - Offline
-  - Secure via https
-  - Responsive
-  - Add to home screen & Splash screen
-  - Supported Browser (Mobile & Desktop) - Google Chrome, Firefox, Safari, Opera, Microsoft Edge and now supports iOS as well.
+- App Shell
+- Offline
+- Secure via https
+- Responsive
+- Add to home screen & Splash screen
+- Supported Browser (Mobile & Desktop) - Google Chrome, Firefox, Safari, Opera, Microsoft Edge and now supports iOS as well.
 
 ## Installation
 
 1. Clone this repo
 
-  ```bash
-  git clone https://github.com/code-kotis/qr-code-scanner
-  ```
+```bash
+git clone https://github.com/code-kotis/qr-code-scanner
+```
 
 2. Installation
 
-  ```bash
-  npm install
-  ```
+```bash
+npm install
+```
 
 3. Run
 
-  ```bash
-  npm run start
-  ```
+```bash
+npm run start
+```
 
 4. Build
 
-  ```bash
-  npm run build
-  ```
+```bash
+npm run build
+```
 
 ### Contributions
 
