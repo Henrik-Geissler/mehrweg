@@ -1,0 +1,31 @@
+{
+  "diffEditor.wordWrap": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "markdown",
+    "json",
+    "graphql",
+    "jsonc",
+    "yaml"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "jest.enableInlineErrorMessages": true,
+  "jest.showCoverageOnLoad": true,
+  "jest.pathToConfig": "./jest.config.js",
+  "prettier.packageManager": "yarn",
+  "prettier.configPath": ".prettierrc",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}

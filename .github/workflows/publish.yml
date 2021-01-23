@@ -1,0 +1,35 @@
+name: Test, Publish & Release
+on: [push]
+jobs:
+  upgrade-lint-patch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn ci:upgrade
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "CI: Upgrade"
+          git add --all
+          git diff-index --quiet HEAD || git commit -m "ci(upgrade): Upgrade dependencies"
+      - run: yarn ci:lint
+      - run: yarn ci:format
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "CI: Lint"
+          git add --all
+          git diff-index --quiet HEAD || git commit -m "ci(lint): Lint & Format"
+      - run: yarn ci:patch
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "CI: Patch"
+          git add --all
+          git diff-index --quiet HEAD || git commit -m "ci(patch): Version"
+          git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main
+          git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main --tags

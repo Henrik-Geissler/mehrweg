@@ -1,0 +1,17 @@
+!.eslintrc
+
+#BUILDS
+build/
+dist/
+
+# testing
+/coverage
+
+#MODULES
+node_modules/
+
+#SECRETS
+secrets/
+
+#COPYRIGHT
+src/copyright.ts
