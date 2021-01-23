@@ -12,8 +12,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ionic serve --lab",
-    "build": "ng build",
-    "build:prod": "node_modules/@ionic/cli/bin/ionic build --prod",
+    "build": "node_modules/@ionic/cli/bin/ionic build --prod",
+    "ci:build": "node_modules/@ionic/cli/bin/ionic build --prod",
     "test": "exit 0;",
     "publish": "exit 0;",
     "ci:format": "./node_modules/.bin/prettier --write \".\"",
