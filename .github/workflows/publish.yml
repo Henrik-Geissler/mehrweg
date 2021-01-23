@@ -20,6 +20,7 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "ci(upgrade): Upgrade dependencies"
       - run: yarn ci:lint
       - run: yarn ci:format
+        
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "CI: Lint"
