@@ -32,5 +32,5 @@ jobs:
           git config --local user.name "CI: Patch"
           git add --all
           git diff-index --quiet HEAD || git commit -m "ci(patch): Version"
-          git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main
-          git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main --tags
+          git push "https://${{github.actor}}:${{secrets.GITHUB}}@github.com/${{github.repository}}.git" HEAD:main
+          git push "https://${{github.actor}}:${{secrets.GITHUB}}@github.com/${{github.repository}}.git" HEAD:main --tags
