@@ -1,35 +1,33 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Component, Input } from '@angular/core';
-
-import type { QR } from '../../shared/model/qr';
-import { Mail } from '../../shared/model/qr-data/mail';
-import type { Wifi } from '../../shared/model/qr-data/wifi';
-import type { QrService } from '../../shared/services/qr.service';
-import { AbstractDetailsComponent } from '../abstract-details-component';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AbstractDetailsComponent} from '../abstract-details-component';
+import {QR} from '../../shared/model/qr';
+import {Mail} from '../../shared/model/qr-data/mail';
+import {QrService} from '../../shared/services/qr.service';
+import {Wifi} from '../../shared/model/qr-data/wifi';
 
 @Component({
   selector: 'app-wifi-details',
-  styleUrls: ['./wifi-details.component.scss'],
   templateUrl: './wifi-details.component.html',
+  styleUrls: ['./wifi-details.component.scss'],
 })
-export class WifiDetailsComponent extends AbstractDetailsComponent
-  implements OnInit, OnChanges {
-  @Input() qr: QR
+export class WifiDetailsComponent extends AbstractDetailsComponent implements OnInit, OnChanges {
 
-  wifi: Wifi
+  @Input() qr: QR;
 
-  constructor(private readonly qrService: QrService) {
-    super()
+  wifi: Wifi;
+
+  constructor(private qrService: QrService) {
+    super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.qr && changes.qr.currentValue) {
-      this.wifi = this.qrService.getData(changes.qr.currentValue as QR) as Wifi
+      this.wifi = this.qrService.getData(changes.qr.currentValue as QR) as Wifi;
     }
   }
+
 }

@@ -1,21 +1,16 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core'
-import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router'
-
-import { HistoryComponent } from './history.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HistoryComponent } from './history.component';
 
 const routes: Routes = [
   {
-    component: HistoryComponent,
     path: '',
-  },
-]
+    component: HistoryComponent,
+  }
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class HistoryRoutingModule {}

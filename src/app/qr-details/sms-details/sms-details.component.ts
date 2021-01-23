@@ -1,35 +1,32 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Component, Input } from '@angular/core';
-
-import type { QR } from '../../shared/model/qr';
-import { Mail } from '../../shared/model/qr-data/mail';
-import type { Sms } from '../../shared/model/qr-data/sms';
-import type { QrService } from '../../shared/services/qr.service';
-import { AbstractDetailsComponent } from '../abstract-details-component';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {QR} from '../../shared/model/qr';
+import {Mail} from '../../shared/model/qr-data/mail';
+import {QrService} from '../../shared/services/qr.service';
+import {Sms} from '../../shared/model/qr-data/sms';
+import {AbstractDetailsComponent} from '../abstract-details-component';
 
 @Component({
   selector: 'app-sms-details',
-  styleUrls: ['./sms-details.component.scss'],
   templateUrl: './sms-details.component.html',
+  styleUrls: ['./sms-details.component.scss'],
 })
-export class SmsDetailsComponent extends AbstractDetailsComponent
-  implements OnInit, OnChanges {
-  @Input() qr: QR
+export class SmsDetailsComponent extends AbstractDetailsComponent implements OnInit, OnChanges {
 
-  sms: Sms
+  @Input() qr: QR;
 
-  constructor(private readonly qrService: QrService) {
-    super()
+  sms: Sms;
+
+  constructor(private qrService: QrService) {
+    super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.qr && changes.qr.currentValue) {
-      this.sms = this.qrService.getData(changes.qr.currentValue as QR) as Sms
+      this.sms = this.qrService.getData(changes.qr.currentValue as QR) as Sms;
     }
   }
 }

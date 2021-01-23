@@ -1,25 +1,23 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { OnInit } from '@angular/core';
-import { Component, Input } from '@angular/core';
-import type { Platform } from '@ionic/angular';
-
-import type { QR } from '../../shared/model/qr';
+import {Component, Input, OnInit} from '@angular/core';
+import {QR} from '../../shared/model/qr';
+import {Platform} from '@ionic/angular';
 
 @Component({
-  selector: 'app-create-step3',
-  styleUrls: ['./create-step3.component.scss'],
+    selector: 'app-create-step3',
     templateUrl: './create-step3.component.html',
+    styleUrls: ['./create-step3.component.scss'],
 })
 export class CreateStep3Component implements OnInit {
-  @Input() qr: QR
 
-  width: number
+    @Input() qr: QR;
 
-  constructor(private readonly platform: Platform) {}
+    width: number;
 
-  ngOnInit() {
-    this.width = this.platform.width()
-  }
+    constructor(private platform: Platform) {
+    }
+
+    ngOnInit() {
+        this.width = this.platform.width();
+    }
+
 }

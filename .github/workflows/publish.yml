@@ -1,4 +1,4 @@
-name: Test, Publish & Release
+name: upgrade, lint, format, test, publish, release
 on: [push]
 jobs:
   upgrade-lint-patch:
@@ -32,4 +32,42 @@ jobs:
           git add --all
           git diff-index --quiet HEAD || git commit -m "ci(patch): Version"
           git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main
-          git push "https://${{github.actor}}:${{secrets.GITHUB:TOKEN}}@github.com/${{github.repository}}.git" HEAD:main --tags
+          git push "https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git" HEAD:main --tags
+  test:
+    needs: upgrade-lint-patch
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn ci:build
+      - run: yarn ci:test
+      - run: bash <(curl -s https://codecov.io/bash) -X gcov -Z
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    #if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
+      - run: yarn
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+  create-release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@master
+      - uses: Roang-zero1/github-create-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

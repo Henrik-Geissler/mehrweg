@@ -1,22 +1,15 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core';
-import type { Routes } from '@angular/router';
-import { PreloadAllModules, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {
-    loadChildren: () =>
-      import('./tabs/tabs.module').then(m => m.TabsPageModule),
-    path: '',
-  },
-]
+    {path: '', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)}
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

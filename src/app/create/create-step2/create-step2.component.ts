@@ -1,25 +1,22 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { OnInit } from '@angular/core';
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-
-import { ActionType } from '../../shared/model/action-type.enum';
-import type { QR } from '../../shared/model/qr';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ActionType} from '../../shared/model/action-type.enum';
+import {QR} from '../../shared/model/qr';
+import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-create-step2',
-  styleUrls: ['./create-step2.component.scss'],
   templateUrl: './create-step2.component.html',
+  styleUrls: ['./create-step2.component.scss'],
 })
 export class CreateStep2Component implements OnInit {
-  public readonly ActionType = ActionType
 
-  @Input() type: ActionType
+  public readonly ActionType = ActionType;
 
-  @Output() stepComplete = new EventEmitter<QR>()
+  @Input() type: ActionType;
 
-  ngOnInit() {}
+  @Output() stepComplete = new EventEmitter<QR>();
+
+  ngOnInit() {
+  }
 
 }

@@ -1,22 +1,17 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core';
-import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-
-import { ScannerComponent } from './scanner.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ScannerComponent} from './scanner.component';
 
 
 const routes: Routes = [
   {
-    component: ScannerComponent,
     path: '',
-  },
-]
+    component: ScannerComponent,
+  }
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class ScannerRoutingModule {}
+export class ScannerRoutingModule { }

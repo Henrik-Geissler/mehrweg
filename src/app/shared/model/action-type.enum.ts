@@ -1,13 +1,10 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
 export enum ActionType {
-  CONTACT = 'contact',
-  EMAIL = 'email',
-  EVENT = 'event',
-  PHONE = 'phone',
-  SMS = 'sms',
-  TEXT = 'text',
-  URL = 'url',
-  WIFI = 'wifi',
+    EMAIL = 'email',
+    SMS = 'sms',
+    EVENT = 'event',
+    CONTACT = 'contact',
+    PHONE = 'phone',
+    TEXT = 'text',
+    WIFI = 'wifi',
+    URL = 'url'
 }

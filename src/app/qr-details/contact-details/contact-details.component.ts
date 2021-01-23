@@ -1,37 +1,33 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Component, Input } from '@angular/core';
-
-import { BaseComponent } from '../../base.component';
-import { ActionType } from '../../shared/model/action-type.enum';
-import type { QR } from '../../shared/model/qr';
-import type { Contact } from '../../shared/model/qr-data/contact';
-import type { QrService } from '../../shared/services/qr.service';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {QR} from '../../shared/model/qr';
+import {ActionType} from '../../shared/model/action-type.enum';
+import {QrService} from '../../shared/services/qr.service';
+import {Contact} from '../../shared/model/qr-data/contact';
+import {BaseComponent} from '../../base.component';
 
 @Component({
   selector: 'app-contact-details',
-  styleUrls: ['./contact-details.component.scss'],
   templateUrl: './contact-details.component.html',
+  styleUrls: ['./contact-details.component.scss'],
 })
-export class ContactDetailsComponent extends BaseComponent
-  implements OnInit, OnChanges {
-  @Input() qr: QR
+export class ContactDetailsComponent extends BaseComponent implements OnInit, OnChanges {
 
-  contact: Contact
+  @Input() qr: QR;
 
-  constructor(private readonly qrService: QrService) {
-    super()
+  contact: Contact;
+
+  constructor(private qrService: QrService) {
+    super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.qr && changes.qr.currentValue) {
-      this.contact = this.qrService.getData(
-        changes.qr.currentValue as QR
-      ) as Contact
+      this.contact = this.qrService.getData(changes.qr.currentValue as QR) as Contact;
     }
   }
+
 }

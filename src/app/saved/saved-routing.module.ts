@@ -1,21 +1,16 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core';
-import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-
-import { SavedComponent } from './saved.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {SavedComponent} from './saved.component';
 
 const routes: Routes = [
   {
-    component: SavedComponent,
     path: '',
-  },
-]
+    component: SavedComponent,
+  }
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class SavedRoutingModule {}

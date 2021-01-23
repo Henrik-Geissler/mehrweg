@@ -1,6 +1,3 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-export type QrDataParser<T> = {
-  parse: (data: string) => T
+export interface QrDataParser<T> {
+    parse(data: string): T;
 }

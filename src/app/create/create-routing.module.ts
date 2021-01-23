@@ -1,21 +1,16 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core';
-import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-
-import { CreateComponent } from './create.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CreateComponent} from './create.component';
 
 const routes: Routes = [
   {
-    component: CreateComponent,
     path: '',
-  },
-]
+    component: CreateComponent,
+  }
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class CreateRoutingModule {}

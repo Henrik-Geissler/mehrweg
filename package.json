@@ -15,9 +15,10 @@
     "build": "ng build",
     "build:prod": "node_modules/@ionic/cli/bin/ionic build --prod",
     "test": "exit 0;",
+    "publish": "exit 0;",
     "ci:format": "./node_modules/.bin/prettier --write \".\"",
     "ci:upgrade": "yarn upgrade --latest",
-    "ci:lint": "./node_modules/.bin/eslint --fix \".\";exit 0;",
+    "ci:lint": "exit 0;./node_modules/.bin/eslint --fix \".\";exit 0;",
     "ci:patch": "yarn version --patch"
   },
   "dependencies": {

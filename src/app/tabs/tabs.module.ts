@@ -1,16 +1,19 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
-import { IonicModule } from '@ionic/angular'
+import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { TabsPage } from './tabs.page'
-import { TabsPageRoutingModule } from './tabs-routing.module'
+import { TabsPageRoutingModule } from './tabs-routing.module';
+
+import { TabsPage } from './tabs.page';
 
 @NgModule({
-  declarations: [TabsPage],
-  imports: [IonicModule, CommonModule, FormsModule, TabsPageRoutingModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    TabsPageRoutingModule
+  ],
+  declarations: [TabsPage]
 })
 export class TabsPageModule {}

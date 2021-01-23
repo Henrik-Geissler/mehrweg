@@ -1,25 +1,24 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import type { ComponentFixture } from '@angular/core/testing';
-import { async, TestBed } from '@angular/core/testing'
-import { IonicModule } from '@ionic/angular'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
-import { EventFormComponent } from './event-form.component'
+import { EventFormComponent } from './event-form.component';
 
 describe('EventFormComponent', () => {
-  let component: EventFormComponent
-  let fixture: ComponentFixture<EventFormComponent>
+  let component: EventFormComponent;
+  let fixture: ComponentFixture<EventFormComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EventFormComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents()
-    fixture = TestBed.createComponent(EventFormComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  }))
+      declarations: [ EventFormComponent ],
+      imports: [IonicModule.forRoot()]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(EventFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
+
   it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-})
+    expect(component).toBeTruthy();
+  });
+});

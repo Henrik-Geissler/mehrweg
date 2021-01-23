@@ -1,14 +1,15 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { Directive, HostListener } from '@angular/core'
+import {Directive, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[click-stop-propagation]',
+  // tslint:disable-next-line:directive-selector
+  selector: '[click-stop-propagation]'
 })
 export class ClickStopPropagationDirective {
+
   @HostListener('click', ['$event'])
-  public onClick(event: any): void {
-    event.stopPropagation()
+  public onClick(event: any): void
+  {
+    event.stopPropagation();
   }
+
 }

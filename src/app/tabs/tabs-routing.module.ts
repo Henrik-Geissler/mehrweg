@@ -1,55 +1,50 @@
-/**
- * Copyright (c) 2021, Henrik Geißler.
- */
-import { NgModule } from '@angular/core'
-import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router'
-
-import { TabsPage } from './tabs.page'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
+    path: 'tabs',
+    component: TabsPage,
     children: [
       {
-        loadChildren: () => import('../scanner/scanner.module').then(m => m.ScannerModule),
-        path: 'scanner'
+        path: 'scanner',
+        loadChildren: () => import('../scanner/scanner.module').then(m => m.ScannerModule)
       },
       {
-        loadChildren: () => import('../history/history.module').then(m => m.HistoryModule),
-        path: 'history'
+        path: 'history',
+        loadChildren: () => import('../history/history.module').then(m => m.HistoryModule)
       },
       {
-        loadChildren: () => import('../favorites/favorites.module').then(m => m.FavoritesModule),
-        path: 'favorites'
+        path: 'favorites',
+        loadChildren: () => import('../favorites/favorites.module').then(m => m.FavoritesModule)
       },
       {
-        loadChildren: () => import('../create/create.module').then(m => m.CreateComponentModule),
-        path: 'create-qr'
+        path: 'create-qr',
+        loadChildren: () => import('../create/create.module').then(m => m.CreateComponentModule)
       },
       {
-        loadChildren: () => import('../saved/saved.module').then(m => m.SavedComponentModule),
-        path: 'saved'
+        path: 'saved',
+        loadChildren: () => import('../saved/saved.module').then(m => m.SavedComponentModule)
       },
-      { loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule), path: 'details/:id' },
-      { loadChildren: () => import('../about/about.module').then(m => m.AboutComponentModule), path: 'about' },
+      {path: 'details/:id', loadChildren: () => import('../qr-details/qr-details.module').then(m => m.QrDetailsModule)},
+      {path: 'about', loadChildren: () => import('../about/about.module').then(m => m.AboutComponentModule)},
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: '/tabs/scanner'
-      },
+        redirectTo: '/tabs/scanner',
+        pathMatch: 'full'
+      }
     ],
-    component: TabsPage,
-    path: 'tabs',
   },
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: '/tabs/scanner'
+    redirectTo: '/tabs/scanner',
+    pathMatch: 'full'
   },
-]
+];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class TabsPageRoutingModule {}
