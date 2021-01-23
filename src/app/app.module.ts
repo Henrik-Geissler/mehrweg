@@ -1,70 +1,74 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import type { DBConfig } from 'ngx-indexed-db';
+import { NgxIndexedDBModule } from 'ngx-indexed-db';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-import {DBConfig, NgxIndexedDBModule} from 'ngx-indexed-db';
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 // Ahead of time compiles requires an exported function for factories
+/**
+ *
+ */
 export function migrationFactory() {
-    return {
-        1: (db, transaction) => {
-            // const store = transaction.objectStore('people');
-            // store.createIndex('country', 'country', { unique: false });
-        },
-        4: (db, transaction) => {
-            const store = transaction.objectStore('codes');
-            store.createIndex('dataType', 'dataType', { unique: false });
-        },
-        5: (db, transaction) => {
-            const store = transaction.objectStore('codes');
-            store.createIndex('favorite', 'favorite', { unique: false });
-        }
-    };
+  return {
+    1: (database, transaction) => {
+      // const store = transaction.objectStore('people');
+      // store.createIndex('country', 'country', { unique: false });
+    },
+    4: (database, transaction) => {
+      const store = transaction.objectStore('codes')
+      store.createIndex('dataType', 'dataType', { unique: false })
+    },
+    5: (database, transaction) => {
+      const store = transaction.objectStore('codes')
+      store.createIndex('favorite', 'favorite', { unique: false })
+    },
+  }
 }
-
-const dbConfig: DBConfig = {
+const databaseConfig: DBConfig = {
+    migrationFactory,
     name: 'QrScanner',
-    version: 5,
     objectStoresMeta: [{
         store: 'codes',
-        storeConfig: {keyPath: 'id', autoIncrement: true},
+        storeConfig: { autoIncrement: true, keyPath: 'id' },
         storeSchema: [
-            {name: 'type', keypath: 'type', options: {unique: false}},
-            {name: 'actionType', keypath: 'actionType', options: {unique: false}},
-            {name: 'dataType', keypath: 'dataType', options: {unique: false}},
-            {name: 'data', keypath: 'data', options: {unique: false}},
-            {name: 'createdAt', keypath: 'createdAt', options: {unique: false}},
-            {name: 'favorite', keypath: 'favorite', options: {unique: false}},
+            { keypath: 'type', name: 'type', options: { unique: false } },
+            { keypath: 'actionType', name: 'actionType', options: { unique: false } },
+            { keypath: 'dataType', name: 'dataType', options: { unique: false } },
+            { keypath: 'data', name: 'data', options: { unique: false } },
+            { keypath: 'createdAt', name: 'createdAt', options: { unique: false } },
+            { keypath: 'favorite', name: 'favorite', options: { unique: false } },
         ]
     }],
-    migrationFactory
+    version: 5
 };
 
 @NgModule({
+    bootstrap: [AppComponent],
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [
+  imports: [
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-        NgxIndexedDBModule.forRoot(dbConfig)
-    ],
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        NgxIndexedDBModule.forRoot(databaseConfig)
+  ],
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -1,4 +1,7 @@
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
 export enum QrType {
-    SCANNED = 'scanned',
-    CREATED = 'created'
+  CREATED = 'created',
+  SCANNED = 'scanned',
 }

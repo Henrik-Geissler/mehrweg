@@ -1,24 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
+import type { ComponentFixture } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing'
+import { IonicModule } from '@ionic/angular'
 
-import { ScannerComponent } from './scanner.component';
+import { ScannerComponent } from './scanner.component'
 
 describe('ScannerComponent', () => {
-  let component: ScannerComponent;
-  let fixture: ComponentFixture<ScannerComponent>;
-
+  let component: ScannerComponent
+  let fixture: ComponentFixture<ScannerComponent>
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScannerComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ScannerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
+      declarations: [ScannerComponent],
+      imports: [IonicModule.forRoot()],
+    }).compileComponents()
+    fixture = TestBed.createComponent(ScannerComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  }))
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

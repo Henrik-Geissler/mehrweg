@@ -1,36 +1,43 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {QrHistoryGroupType} from '../../services/qr.service';
-import {ActionSheetController} from '@ionic/angular';
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
+import type { OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import type { ActionSheetController } from '@ionic/angular';
+
+import { QrHistoryGroupType } from '../../services/qr.service';
 
 @Component({
   selector: 'app-qr-list-sort-button',
-  templateUrl: './qr-list-sort-button.component.html',
   styleUrls: ['./qr-list-sort-button.component.scss'],
+  templateUrl: './qr-list-sort-button.component.html',
 })
 export class QrListSortButtonComponent implements OnInit {
+  @Output('sortTypeChanged') sortTypeChanged = new EventEmitter<
+    QrHistoryGroupType
+  >()
 
-  @Output('sortTypeChanged') sortTypeChanged = new EventEmitter<QrHistoryGroupType>();
-
-  constructor(private actionSheetController: ActionSheetController) { }
+  constructor(private readonly actionSheetController: ActionSheetController) {}
 
   ngOnInit() {}
 
   showSortByActionSheet(): void {
-    this.actionSheetController.create({
-      header: 'Sort by',
-      buttons: [
+    this.actionSheetController
+      .create({
+        buttons: [
         {
-          text: 'Date',
+          handler: () => this.sortTypeChanged.emit(QrHistoryGroupType.GROUP_BY_DATE),
           icon: 'calendar-outline',
-          handler: () => this.sortTypeChanged.emit(QrHistoryGroupType.GROUP_BY_DATE)
+          text: 'Date'
         },
         {
-          text: 'Type',
+          handler: () => this.sortTypeChanged.emit(QrHistoryGroupType.GROUP_BY_TYPE),
           icon: 'pricetag-outline',
-          handler: () => this.sortTypeChanged.emit(QrHistoryGroupType.GROUP_BY_TYPE)
+          text: 'Type'
         }
-      ]
-    }).then(sheet => sheet.present());
+      ],
+      header: 'Sort by'
+      })
+      .then(sheet => sheet.present())
   }
-
 }

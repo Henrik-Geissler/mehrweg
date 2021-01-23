@@ -1,54 +1,64 @@
-import {Component, OnInit} from '@angular/core';
-import {ActionType} from '../shared/model/action-type.enum';
-import {GlobalEmitter} from '../shared/utils/global-emitter';
-import {SEND_CREATE_QR_FORM} from '../shared/utils/constants';
-import {BaseComponent} from '../base.component';
-import {QR} from '../shared/model/qr';
-import {QrService} from '../shared/services/qr.service';
-import {takeUntil} from 'rxjs/operators';
-import {ToastController} from '@ionic/angular';
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import type { ToastController } from '@ionic/angular';
+import { takeUntil } from 'rxjs/operators';
+
+import { BaseComponent } from '../base.component';
+import { ActionType } from '../shared/model/action-type.enum';
+import type { QR } from '../shared/model/qr';
+import type { QrService } from '../shared/services/qr.service';
+import { SEND_CREATE_QR_FORM } from '../shared/utils/constants';
+import { GlobalEmitter } from '../shared/utils/global-emitter';
 
 @Component({
-    selector: 'app-create',
+  selector: 'app-create',
+  styleUrls: ['./create.component.scss'],
     templateUrl: './create.component.html',
-    styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent extends BaseComponent implements OnInit {
+  currentStep = 1
 
-    currentStep = 1;
-    selectedType: ActionType = ActionType.TEXT;
-    currentQR: QR = null;
+  selectedType: ActionType = ActionType.TEXT
 
-    constructor(private qrService: QrService,
-                private toastController: ToastController) {
-        super();
-    }
+  currentQR: QR = null
 
-    ngOnInit() {
-    }
+  constructor(
+    private readonly qrService: QrService,
+    private readonly toastController: ToastController
+  ) {
+    super()
+  }
 
-    step1Complete(type: ActionType) {
-        this.selectedType = type;
-        this.currentStep = 2;
-    }
+  ngOnInit() {}
 
-    step2Complete(qr: QR) {
-        this.currentQR = qr;
-        this.currentStep = 3;
-    }
+  step1Complete(type: ActionType) {
+    this.selectedType = type
+    this.currentStep = 2
+  }
 
-    submitForm(): void {
-        GlobalEmitter.of(SEND_CREATE_QR_FORM).emit(true);
-    }
+  step2Complete(qr: QR) {
+    this.currentQR = qr
+    this.currentStep = 3
+  }
 
-    saveQR() {
-        this.qrService.saveQR(this.currentQR)
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe(() => this.toastController.create({
-                    message: 'QR Code saved!',
-                    duration: 2000
-                }).then(toast => toast.present())
-            );
-    }
+  submitForm(): void {
+    GlobalEmitter.of(SEND_CREATE_QR_FORM).emit(true)
+  }
 
+  saveQR() {
+    this.qrService
+      .saveQR(this.currentQR)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(() =>
+        this.toastController
+          .create({
+            duration: 2_000,
+            message: 'QR Code saved!',
+          })
+          .then(toast => toast.present())
+      )
+  }
 }

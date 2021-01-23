@@ -1,46 +1,56 @@
-import {Component} from '@angular/core';
-import {QR} from '../shared/model/qr';
-import {QrHistoryGroupType, QrService} from '../shared/services/qr.service';
-import {takeUntil, tap} from 'rxjs/operators';
-import {BaseComponent} from '../base.component';
-import {ToastController} from '@ionic/angular';
+/**
+ * Copyright (c) 2021, Henrik Geißler.
+ */
+import { Component } from '@angular/core';
+import type { ToastController } from '@ionic/angular';
+import { takeUntil, tap } from 'rxjs/operators';
+
+import { BaseComponent } from '../base.component';
+import type { QR } from '../shared/model/qr';
+import type { QrService } from '../shared/services/qr.service';
+import { QrHistoryGroupType } from '../shared/services/qr.service';
 
 @Component({
   selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
+  templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent extends BaseComponent {
+  favorites: Map<string, QR[]>
 
-  favorites: Map<string, QR[]>;
-
-  constructor(private qrService: QrService,
-              private toastController: ToastController) {
-    super();
+  constructor(
+    private readonly qrService: QrService,
+    private readonly toastController: ToastController
+  ) {
+    super()
   }
 
   ionViewWillEnter(): void {
-    this.loadFavorites(QrHistoryGroupType.GROUP_BY_DATE);
+    this.loadFavorites(QrHistoryGroupType.GROUP_BY_DATE)
   }
 
   ionViewDidLeave() {
-    this.ngOnDestroy();
+    this.ngOnDestroy()
   }
 
   loadFavorites(groupType: QrHistoryGroupType): void {
-    this.qrService.loadFavorites(groupType)
-        .pipe(
-            takeUntil(this.ngUnsubscribe),
-        ).subscribe(res => this.favorites = res);
+    this.qrService
+      .loadFavorites(groupType)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(res => (this.favorites = res))
   }
 
   deleteQr(id: number): void {
-    this.qrService.deleteQR(id)
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe(() => this.toastController.create({
-          message: 'QR Code deleted!',
-          duration: 2000
-        }).then(toast => toast.present()));
+    this.qrService
+      .deleteQR(id)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(() =>
+        this.toastController
+          .create({
+            duration: 2_000,
+          message: 'QR Code deleted!'
+          })
+          .then(toast => toast.present())
+      )
   }
-
 }
