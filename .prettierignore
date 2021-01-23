@@ -16,3 +16,4 @@ node_modules
 /secrets
 
 www
+.github/workflows
