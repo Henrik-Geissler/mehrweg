@@ -27,5 +27,8 @@
   "jest.pathToConfig": "./jest.config.js",
   "prettier.packageManager": "yarn",
   "prettier.configPath": ".prettierrc",
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "typescript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.enableSmartCommit": true
 }
